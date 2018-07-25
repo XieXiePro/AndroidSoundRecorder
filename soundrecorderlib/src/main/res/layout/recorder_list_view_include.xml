@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_alignParentBottom="true"
+    android:layout_height="match_parent">
+
+    <ListView
+        android:id="@+id/id_lv_audio_take"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="none"
+        android:visibility="gone">
+    </ListView>
+
+    <TextView
+        android:layout_alignParentBottom="true"
+        android:id="@+id/btn_audio_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:padding="10dp"
+        style="@style/main_center_15"
+        android:background="@drawable/btn_update_style_unchecked"
+        android:text="@string/btn_audio_list"/>
+</RelativeLayout>

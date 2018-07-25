@@ -1,0 +1,28 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="pro.xp.com.soundrecorderlib">
+
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+
+    <application
+        android:allowBackup="false"
+        android:label="@string/app_name"
+        android:supportsRtl="true">
+        <!--音频选择器-->
+        <activity android:name=".seleteaudio.ui.SeleteAudioActivity" />
+        <!--录音器-->
+        <activity
+            android:name=".recorder.ui.SoundRecorder"
+            android:clearTaskOnLaunch="true"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:screenOrientation="unspecified"
+            android:theme="@style/Theme.SoundRecorder">
+            <intent-filter>
+                <action android:name="android.provider.MediaStore.RECORD_SOUND" />
+            </intent-filter>
+        </activity>
+    </application>
+</manifest>
