@@ -4,6 +4,8 @@
     <string name="select_audio">选择音频</string>
     <string name="start_record">开始录音</string>
 
+    <string name="record_list_tip">没有找到录音文件\n\n您可以使用该应用提供的录音功能进行录音，或者将您需要上传的文件放入根目录下SoundRecoder文件夹中，再刷新列表</string>
+
     <!--selete audio-->
     <string name="select_audio_name_hint">录音</string>
     <string name="select_audio_time_hint">2018-03-12 9:00</string>

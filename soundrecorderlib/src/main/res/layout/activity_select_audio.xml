@@ -3,6 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_gravity="center"
+    android:fitsSystemWindows="true"
+    android:gravity="center"
     android:orientation="vertical">
 
     <LinearLayout
@@ -49,8 +52,31 @@
     <ListView
         android:id="@+id/id_lv_audio_list"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="0dp"
+        android:layout_weight="1" />
 
-    </ListView>
+    <LinearLayout
+        android:id="@+id/record_list_empty_ll"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_gravity="center"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:visibility="gone">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:src="@mipmap/empty" />
+
+        <TextView
+            android:layout_marginTop="5dp"
+            android:id="@+id/record_list_empty"
+            style="@style/main_center_15"
+            android:text="@string/record_list_tip"
+            android:textColor="@android:color/darker_gray" />
+    </LinearLayout>
 
 </LinearLayout>

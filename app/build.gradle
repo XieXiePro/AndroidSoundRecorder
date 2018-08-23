@@ -22,5 +22,6 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     /*录音库*/
     implementation 'com.czt.mp3recorder:library:1.0.4'
+
     implementation project( ':soundrecorderlib')
 }

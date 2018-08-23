@@ -10,6 +10,7 @@ import android.os.Parcelable;
 import android.os.PowerManager;
 import android.util.Log;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -24,7 +25,7 @@ import pro.xp.com.soundrecorderlib.seleteaudio.model.AudioBean;
 import static pro.xp.com.soundrecorderlib.recorder.Recorder.getAudioFile;
 
 @SuppressWarnings("all")
-public class SeleteAudioActivity extends Activity implements AudioSelectAdapter.AudioItemClickListener,AudioSelectAdapter.AudioItemDeleteClickListener, Recorder.OnStateChangedListener {
+public class SeleteAudioActivity extends Activity implements AudioSelectAdapter.AudioItemClickListener, AudioSelectAdapter.AudioItemDeleteClickListener, Recorder.OnStateChangedListener {
     public static final String TAG = "SeleteAudioActivity";
 
     public static final String ANSWER_AUDIO_SELECT = "answer_audio_select";
@@ -86,6 +87,8 @@ public class SeleteAudioActivity extends Activity implements AudioSelectAdapter.
 
     private void initView() {
         mLvAudio = (ListView) findViewById(R.id.id_lv_audio_list);
+        LinearLayout emptyView = (LinearLayout) findViewById(R.id.record_list_empty_ll);
+        mLvAudio.setEmptyView(emptyView);
         mBtnBack = (TextView) findViewById(R.id.id_btn_back);
         mBtnCommit = (TextView) findViewById(R.id.id_btn_commit);
         mBtnCommit.setOnClickListener(new View.OnClickListener() {
@@ -103,17 +106,18 @@ public class SeleteAudioActivity extends Activity implements AudioSelectAdapter.
 
         PowerManager pm = (PowerManager) getSystemService(Context.POWER_SERVICE);
         mWakeLock = pm.newWakeLock(PowerManager.SCREEN_DIM_WAKE_LOCK, "SoundRecorder");
-
         mAapter = new AudioSelectAdapter(this);
-        Log.d(TAG, mAudioBeanList.toString());
-        mAapter.setData(mAudioBeanList);
-        int type = getIntent().getIntExtra("type", 0);
-        //选择音频
-        mAapter.setType(type);
-        mAapter.setListener(this);
-        mAapter.setDelListener(SeleteAudioActivity.this);
-        mLvAudio.setAdapter(mAapter);
-        mAapter.notifyDataSetChanged();
+        if (null != mAudioBeanList && !mAudioBeanList.isEmpty()) {
+            Log.d(TAG, mAudioBeanList.toString());
+            mAapter.setData(mAudioBeanList);
+            int type = getIntent().getIntExtra("type", 0);
+            //选择音频
+            mAapter.setType(type);
+            mAapter.setListener(this);
+            mAapter.setDelListener(SeleteAudioActivity.this);
+            mLvAudio.setAdapter(mAapter);
+            mAapter.notifyDataSetChanged();
+        }
     }
 
     // return to the result

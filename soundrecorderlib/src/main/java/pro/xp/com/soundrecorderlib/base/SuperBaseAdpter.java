@@ -87,7 +87,7 @@ public abstract class SuperBaseAdpter<T> extends BaseAdapter {
 
     @Override
     public int getCount() {
-        if (mDatas == null) {
+        if (mDatas == null||mDatas.isEmpty()) {
             return 0;
         } else {
             return mDatas.size();
