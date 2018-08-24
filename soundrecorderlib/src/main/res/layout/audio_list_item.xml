@@ -57,7 +57,7 @@
                 android:id="@+id/id_audio_delete"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
-                android:background="@mipmap/search_clear_pressed" />
+                android:background="@mipmap/delete" />
         </LinearLayout>
 
     </LinearLayout>

@@ -48,7 +48,7 @@ public class AudioSelectAdapter extends SuperBaseAdpter<AudioBean> {
         this.type = type;
     }
 
-    AudioSelectAdapter(Context context) {
+    public AudioSelectAdapter(Context context) {
         super(context);
         mTimerFormat = context.getResources().getString(R.string.timer_format);
     }
