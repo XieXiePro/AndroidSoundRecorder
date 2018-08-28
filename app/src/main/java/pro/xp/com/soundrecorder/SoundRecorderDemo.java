@@ -15,13 +15,14 @@ import java.util.ArrayList;
 import pro.xp.com.soundrecorderlib.recorder.Recorder;
 import pro.xp.com.soundrecorderlib.recorder.ui.SoundRecorder;
 import pro.xp.com.soundrecorderlib.seleteaudio.model.AudioBean;
+import pro.xp.com.soundrecorderlib.seleteaudio.ui.AudioSelectAdapter;
 import pro.xp.com.soundrecorderlib.seleteaudio.ui.SeleteAudioActivity;
 
 import static pro.xp.com.soundrecorderlib.recorder.Recorder.getAudioFile;
 import static pro.xp.com.soundrecorderlib.seleteaudio.ui.SeleteAudioActivity.ANSWER_AUDIO_SELECT;
 import static pro.xp.com.soundrecorderlib.seleteaudio.ui.SeleteAudioActivity.RESULT_AUDIO_SELECT;
 
-public class SoundRecorderDemo extends Activity implements ReportAudioAdapter.AudioItemClickListener, Recorder.OnStateChangedListener {
+public class SoundRecorderDemo extends Activity implements AudioSelectAdapter.AudioItemClickListener, AudioSelectAdapter.AudioItemDeleteClickListener, Recorder.OnStateChangedListener {
     /**
      * 从系统中选择音频
      */
@@ -64,7 +65,7 @@ public class SoundRecorderDemo extends Activity implements ReportAudioAdapter.Au
      */
     ArrayList<AudioBean> mAudioResultList;
 
-    ReportAudioAdapter mAapter;
+    AudioSelectAdapter mAapter;
 
     Recorder mRecorder = null;
 
@@ -76,9 +77,12 @@ public class SoundRecorderDemo extends Activity implements ReportAudioAdapter.Au
             mWakeLock = pm.newWakeLock(PowerManager.SCREEN_DIM_WAKE_LOCK, "SoundRecorder");
             //选择音频
             mAudioResultList = data.getParcelableArrayListExtra(ANSWER_AUDIO_SELECT);
-            mAapter = new ReportAudioAdapter(this);
+            mAapter = new AudioSelectAdapter(this);
+            //1:查询，0，选择；
+            mAapter.setType(2);
             mAapter.setData(mAudioResultList);
             mAapter.setListener(this);
+            mAapter.setDelListener(this);
             mLvAudio.setAdapter(mAapter);
         }
     }
@@ -96,6 +100,19 @@ public class SoundRecorderDemo extends Activity implements ReportAudioAdapter.Au
             mRecorder.setOnStateChangedListener(this);
             data.recorder = mRecorder;
         }
+    }
+
+    @Override
+    public void onAudioItemDeleteClick(AudioBean data) {
+        int type = mAapter.getType();
+        if (type == 2) {
+            mAudioResultList.clear();
+            mAapter.setData(mAudioResultList);
+        }
+        mAapter.setListener(this);
+        mAapter.setDelListener(this);
+        mLvAudio.setAdapter(mAapter);
+        mAapter.notifyDataSetChanged();
     }
 
     private PowerManager.WakeLock mWakeLock;

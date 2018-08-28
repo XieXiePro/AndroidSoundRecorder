@@ -41,7 +41,7 @@
             <TextView
                 android:id="@+id/id_audio_time_length"
                 style="@style/main_center_15"
-                android:textColor="@android:color/darker_gray"
+                android:textColor="@android:color/black"
                 tools:text="@string/select_audio_length_hint" />
 
             <RadioButton
@@ -51,7 +51,7 @@
                 android:layout_margin="5dp"
                 android:button="@null"
                 android:checked="false"
-                android:visibility="invisible"/>
+                android:visibility="invisible" />
 
             <TextView
                 android:id="@+id/id_audio_delete"
@@ -85,30 +85,23 @@
             android:padding="3dp"
             android:visibility="gone" />
 
-        <TextView
-            android:id="@+id/tv_select_time_process"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="2"
-            android:gravity="center"
-            tools:text="00:05" />
-
         <ProgressBar
             android:id="@+id/stateProgressBar"
             style="?android:attr/progressBarStyleHorizontal"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="6"
+            android:layout_margin="3dp"
+            android:layout_weight="1"
             android:max="100"
             android:orientation="horizontal"
             android:progress="0" />
 
         <TextView
-            android:id="@+id/btn_select_time_total"
+            android:id="@+id/tv_select_time_process"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:padding="2dp"
-            tools:text="05:02" />
+            android:textSize="13sp" />
     </LinearLayout>
 
 </LinearLayout>

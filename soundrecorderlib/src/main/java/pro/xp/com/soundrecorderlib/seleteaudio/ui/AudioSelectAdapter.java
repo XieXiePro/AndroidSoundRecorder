@@ -21,7 +21,7 @@ import pro.xp.com.soundrecorderlib.utils.TimeDataUtils;
 @SuppressWarnings("all")
 public class AudioSelectAdapter extends SuperBaseAdpter<AudioBean> {
     /**
-     * 1:查询，0，选择；
+     * 0，选择;1:查询;2,选中查询列表
      */
     private int type;
 
@@ -70,7 +70,6 @@ public class AudioSelectAdapter extends SuperBaseAdpter<AudioBean> {
             mHolder.tvSelectStopPlay = (TextView) convertView.findViewById(R.id.tv_select_stop_play);
             mHolder.tvSelectTimeProcess = (TextView) convertView.findViewById(R.id.tv_select_time_process);
             mHolder.stateProgressBar = (ProgressBar) convertView.findViewById(R.id.stateProgressBar);
-            mHolder.btnSelectTimeTotal = (TextView) convertView.findViewById(R.id.btn_select_time_total);
             mHolder.tvAudioDelete = (TextView) convertView.findViewById(R.id.id_audio_delete);
 
             convertView.setTag(mHolder);
@@ -108,9 +107,11 @@ public class AudioSelectAdapter extends SuperBaseAdpter<AudioBean> {
         mHolder.tvAudioDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //删除所选音频文件
-                delFile(item.getPath());
                 mDelListener.onAudioItemDeleteClick(item);
+                if (type == 1) {
+                    //删除所选音频文件
+                    delFile(item.getPath());
+                }
             }
         });
         mHolder.llAudioItem.setOnClickListener(new View.OnClickListener() {
@@ -230,7 +231,6 @@ public class AudioSelectAdapter extends SuperBaseAdpter<AudioBean> {
         TextView tvSelectStopPlay;
         TextView tvSelectTimeProcess;
         ProgressBar stateProgressBar;
-        TextView btnSelectTimeTotal;
         TextView tvAudioDelete;
     }
 
