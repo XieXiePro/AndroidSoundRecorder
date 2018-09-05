@@ -14,7 +14,7 @@ import java.io.IOException;
 
 @SuppressWarnings("all")
 public class Recorder extends MP3Recorder implements OnCompletionListener, OnErrorListener {
-    static final String SAMPLE_PREFIX = "recording";
+    static final String SAMPLE_PREFIX = "Recording";
     static final String SAMPLE_PATH_KEY = "sample_path";
     static final String SAMPLE_LENGTH_KEY = "sample_length";
     static final String MP3_FILE_PATH = "/SoundRecorder/";
@@ -51,7 +51,7 @@ public class Recorder extends MP3Recorder implements OnCompletionListener, OnErr
     long mSampleStart = 0;
     // length of current sample
     int mSampleLength = 0;
-    static File mSampleFile = null;
+    public static File mSampleFile = null;
 
     //    MediaRecorder mRecorder = null;
     MP3Recorder mRecorder = null;
@@ -173,7 +173,7 @@ public class Recorder extends MP3Recorder implements OnCompletionListener, OnErr
             }
 
             try {
-                mSampleFile = File.createTempFile(SAMPLE_PREFIX, extension, sampleDir);
+                mSampleFile = File.createTempFile(SAMPLE_PREFIX + "-", extension, sampleDir);
             } catch (IOException e) {
                 setError(SDCARD_ACCESS_ERROR);
                 return;

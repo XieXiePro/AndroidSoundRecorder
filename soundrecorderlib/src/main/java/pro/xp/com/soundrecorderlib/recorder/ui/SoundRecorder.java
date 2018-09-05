@@ -32,6 +32,7 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+
 import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -433,6 +434,7 @@ public class SoundRecorder extends Activity
                 reNameLogFile(mRecorder.sampleFile().getAbsolutePath(), builder.getProNum());
                 selectAudioActivity();
 //                mRecorder.delete();
+                mRecorder.mSampleFile = null;
                 finish();
             }
 
@@ -466,7 +468,7 @@ public class SoundRecorder extends Activity
     }
 
     /*
-     * Handle the "back" hardware key. 
+     * Handle the "back" hardware key.
      */
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
@@ -727,9 +729,9 @@ public class SoundRecorder extends Activity
     }
 
     /*
-     * Called when we're in recording state. Find out how much longer we can 
-     * go on recording. If it's under 5 minutes, we display a count-down in 
-     * the UI. If we've run out of time, stop the recording. 
+     * Called when we're in recording state. Find out how much longer we can
+     * go on recording. If it's under 5 minutes, we display a count-down in
+     * the UI. If we've run out of time, stop the recording.
      */
     private void updateTimeRemaining() {
         long t = mRemainingTimeCalculator.timeRemaining();

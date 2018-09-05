@@ -73,7 +73,7 @@ public class AudioSelectManager {
     }
 
     /**
-     * /storage/emulated/0/SoundRecorder/My Recording_1521894407719.mp4
+     *
      *
      * @param files
      */
